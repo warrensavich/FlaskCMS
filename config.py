@@ -4,7 +4,8 @@ DEBUG = True
 VERSION = 1.0
 NAME= "DTF?"
 
-SQLALCHEMY_DATABASE_URI="mysql://root@localhost/dtf"
+#SQLALCHEMY_DATABASE_URI="mysql://root@localhost/dtf"
+SQLALCHEMY_DATABASE_URI="mysql://b8b5c9dd408c57:13a951af@us-cdbr-iron-east-01.cleardb.net/heroku_faa3b643a2d26ee?reconnect=true"
 
 SECRET_KEY="warrenisthebest"
 SECURITY_PASSWORD_HASH="bcrypt"
