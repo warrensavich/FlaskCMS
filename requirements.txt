@@ -27,7 +27,7 @@ html5lib==0.999
 itsdangerous==0.24
 passlib==1.6.2
 py-bcrypt==0.4
-python-apt==0.9.3.5
+--allow-unverified python-apt==0.9.3.5
 python-debian==0.1.21-nmu2ubuntu2
 pytz==2014.4
 requests==2.2.1
