@@ -19,7 +19,10 @@
       <ul class="nav navbar-nav">
 	{% if current_user.is_authenticated() %}
 	{% for role in current_user.roles %}
-	<li><a>{{ role }}</a></li>
+	{% if role == "user" %}
+	<li><a href="/application">Build an Application</a></li>
+	<li><a href="/about">How {{ config.NAME }} works</a></li>
+	{% endif %}
 	{% endfor %}
 	{% else %}
 	<li><a href="/user_signup">Sign Up</a></li>

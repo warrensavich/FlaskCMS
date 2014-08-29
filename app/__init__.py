@@ -57,6 +57,11 @@ def user_signup():
 def confirmed():
     return render_template('confirmed.html')
 
+@app.route('/application')
+@login_required
+def application():
+    return render_template('application.html')
+
 # Restful Resources
 
 import resources
