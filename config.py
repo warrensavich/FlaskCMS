@@ -1,6 +1,9 @@
 import os
 
 DEBUG = True
+TESTING = True
+PROPOGATE_EXCEPTIONS = True
+
 VERSION = 1.0
 NAME= "Effortless Application"
 
