@@ -1,0 +1,42 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-xs-12">
+    <h2>{{ post.title }} <small>{{ post.time | date }}</small></h2>
+    <span class="text-muted">By: {{ post.writer.first_name }} {{ post.writer.last_name }}</span>
+    <br />
+    <br />
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <p>{{ post.content | markdown }}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h4><i class="fa fa-commenting"></i> Comments ({{ post.comments | length }})</h4><br />
+    {% if current_user.is_authenticated() %}
+    <form id="comment_form" 
+	  method="POST"
+	  action="/add_comment/{{ s.slug }}/{{ c.slug }}/{{ post.id }}">
+      <input class="form-control" name="title" placeholder="Add a title for your comment ..." />
+      <br />
+      <textarea class="form-control" 
+		rows="4" 
+		id="new_comment"
+		name="comment"
+		placeholder="Add a comment ..."></textarea>
+      <br />
+      <input type="submit" value="Add Comment" class="btn btn-primary">
+    </form>
+    {% endif %}
+    {% for cmt in post.comments %}
+    <h5>{{ cmt.title }} <small>{{ cmt.time | date }}</small></h5>
+    <p>{{ cmt.comment }}</p>
+    <br />
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "wrap.html" %}
+{% from "_macros.html" import carousel %}
+
+{% block carousel %}
+{{ carousel("participant_carousel", p.gallery.images) }}
+{% endblock %}
+
+{% block page_stuff %}
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <h1>{{ p.name }}</h1>
+    <p>{{ p.bio }}</p>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <h4>{{ p.name }}'s Progress</h4>
+    <p>{{ p.name }} has gotten {{ p.donation_count }} donation{% if p.donation_count != 1 %}s{% endif %} for a total of ${{ p.current_progress | currency }} towards their goal of ${{ p.goal | currency }}.</p>
+    <div class="progress">
+      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ (p.current_progress / p.goal) * 100.0 }}%;min-width:30px;">
+	{{ ((p.current_progress / p.goal) * 100.0) | truncate_number }}%
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6 col-xs-12 col-sm-offset-6">
+    <button class="btn btn-default" id="donate_now" data-participant_id="{{ p.id }}">Donate Now!</button>
+    <br />
+    <br />
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/static/js/participant.js"></script>
+{% endblock %}

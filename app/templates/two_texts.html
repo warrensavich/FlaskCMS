@@ -1,0 +1,22 @@
+<div class="container-fluid banner full_banner">
+  <div class="row banner_row">
+    <div class="col-sm-12">
+      <div class="container">
+	{% if x.href != None %}
+	<a href="{{ x.href }}">
+	  {% endif %}
+          <div class="row">
+            <div class="col-sm-6">
+	      <p>{{ x.text | markdown }}</p>
+            </div>
+	    <div class="col-sm-6">
+	      <p>{{ x.second_text | markdown }}</p>
+	    </div>
+          </div>
+	  {% if x.href != None %}
+	</a>
+	{% endif %}
+      </div>
+    </div>
+  </div>
+</div>

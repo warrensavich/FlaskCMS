@@ -1,0 +1,25 @@
+{% from "_macros.html" import carousel %}
+<div class="container-fluid banner">
+  <div class="row banner_row">
+    <div class="col-sm-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+	    
+	    {% if x.href != None %}
+	    <a href="{{ x.href }}">
+	      {% endif %}
+	      <p>{{ x.text | markdown }}</p>
+	      
+	      {% if x.href != None %}
+	    </a>
+	    {% endif %}
+          </div>
+          <div class="col-sm-6">
+	      {{ carousel("dynamic_carousel_" + (x.id | string), x.gallery.images) }}
+          </div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>

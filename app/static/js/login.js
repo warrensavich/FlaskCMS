@@ -2,7 +2,7 @@ $(document).ready(function() {
     $("#login").click(function() {
 	$.ajax({
 	    type: 'POST',
-	    url: '/login'
+	    url: '/api/login'
 	    data: JSON.stringify({
 		email: $("#email").val(),
 		password: $("#password").val()

@@ -1,0 +1,36 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="new_gallery_modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title new_gallery_modal_title">Add New Gallery</h4>
+      </div>
+      <div class="modal-body">
+	<div id="modal_gallery_title_holder">
+	  <p>First name the gallery. Once you've created the name for your gallery you can add unlimited images to it.</p>
+	  <form id="new-gallery-form">
+	    <label>Gallery Title</label>
+	    <input type="text" name="gallery_title" class="form-control input-lg" />
+	    <br />
+	  </form>
+	  <button class="btn btn-primary" id="submit_new_gallery">Submit</button>
+	</div>
+	<div id="modal_image_uploader_holder" style="display:none">
+	  <div id="dropzone_for_images" class="text-center">
+	    <h4>Upload Images</h4>
+	    <p>Drag and drop images here or click here to select them.</p>
+	  </div>
+	  <br />
+	  <div id="added_images_holder" class="row">
+	    
+	  </div>
+	  <br />
+	  <button class="btn btn-block btn-primary" 
+		  id="done_adding_images">Done Adding Images</button>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="/static/js/new_gallery_modal.js"></script>
+

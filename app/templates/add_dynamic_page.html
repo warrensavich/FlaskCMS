@@ -1,0 +1,118 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-xs-12">
+    <form id="dynamic_page_form">
+      <input class="form-control input-lg" name="page_title" placeholder="Page Title" />
+      <div class="row" id="dynamic_page_layout">
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <a class="btn btn-default" data-toggle="modal" data-target="#add_component_modal">
+      <i class="fa fa-plus fa-lg"></i>&nbsp;&nbsp;Add Component
+    </a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <a class="btn btn-primary" id="submit_page">Create Page!</a>
+  </div>
+</div>
+{% include "_add_link_modal.html" %}
+{% include "_link_to_page_modal.html" %}
+<div class="modal fade" id="add_component_modal" tabindex="-1" role="dialog" aria-labelledby="addComponent">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="add_component_title">Add New Component</h4>
+      </div>
+      <div class="modal-body">
+	<div class="row">
+	  <div class="col-xs-3 component_choice" data-type="carousel_w_thumbnails">
+	    <h4>Carousel w/ Thumbnails</h4>
+	  </div>
+	  <div class="col-xs-3 component_choice" data-type="carousel">
+	    <h4>Carousel</h4>
+	  </div>
+	  <div class="col-xs-3 component_choice" data-type="info_carousel">
+	    <h4>Carousel w/ Text</h4>
+	  </div>
+	  <div class="col-xs-3 component_choice" data-type="banner">
+	    <h4>Banner</h4>
+	  </div>
+	  <div class="col-xs-3 component_choice" data-type="half_carousel">
+	    <h4>Half-Width Carousel w/ Text</h4>
+	  </div>
+	  <div class="col-xs-3 component_choice" data-type="reverse_half_carousel">
+	    <h4>Right Half-Width Carousel w/ Text</h4>
+	  </div>
+	  <div class="col-xs-3 component_choice" data-type="two_texts">
+	    <h4>Two Text Boxes</h4>
+	  </div>
+	  <div class="col-xs-3 component_choice" data-type="three_texts">
+	    <h4>Three Text Boxes</h4>
+	  </div>
+	  <div class="col-xs-3 component_choice" data-type="four_texts">
+	    <h4>Four Text Boxes</h4>
+	  </div>
+	  <div class="col-xs-3 component_choice" data-type="four_headed">
+	    <h4>Four Headed Boxes</h4>
+	  </div>
+	</div>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-warning" data-dismiss="modal" aria-label="Close">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="select_gallery_modal" tabindex="-1" role="dialog" aria-labelledby="addComponent">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="select_gallery_modal_title">Select a Gallery</h4>
+      </div>
+      <div class="modal-body">
+	<div class="row">
+	  <div class="col-xs-12 gallery-select">
+	    <div class="row" id="gallery_select_row">
+	      {% for g in galleries %}
+	      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+		<div class="gallery_select_block existing_gallery" data-slug="{{ g.slug }}">
+		  <div class="gallery_select_img_wrapper">
+		    <img class="img-responsive img-rounded center-block" 
+			 src="{% if (g.images | length) > 0 %}{{ g.images[0].url }}{% else %}/static/img/No_image_available.svg{% endif %}" />
+		  </div>
+		  <h4 class="text-center">{{ g.title }}</h4>
+		</div>
+	      </div>
+	      {% endfor %}
+	      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 text-center">
+		<div class="gallery_select_block add_new_gallery_trigger">
+		  <i class="fa fa-5x fa-plus"></i>
+		  <h4>Add New Gallery</h4>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-warning" data-dismiss="modal" aria-label="Close">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% include "_new_gallery_modal.html" %}
+<script type="text/javascript" src="/static/js/dynamic_component_selector.js"></script>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/static/js/dropzone.js"></script>
+{% endblock %}

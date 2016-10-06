@@ -1,0 +1,50 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<form id="add-section-form" method="POST" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-sm-9">
+      <h2>Section Contents</h2>
+      <label>Section Type</label>
+      <select class="input-lg form-control" name="section_type">
+	<option selected="selected" value="content">Web Page / Page Group</option>
+	<option value="us_register">United Survivors Registration</option>
+	<option value="blog">Blog Group</option>
+	<option value="magazine">Magazine</option>
+	<option value="fundraiser">Fund Raising Event</option>
+      </select>
+      <label>Title</label>
+      <input class="input-lg form-control" name="title" />
+      <br />
+      <label>CSS File (optional)</label>
+      <input class="input-lg form-control" name="css" type="file" />
+      <br />
+      <label>Section Logo (optional)</label>
+      <input class="input-lg form-control" name="logo" type="file" />
+      <br />
+      <label>Description</label>
+      <textarea class="form-control" rows="5" name="description"></textarea>
+      <br />
+      <label>Landing Page Content</label>
+      <textarea class="form-control" rows="5" name="content" data-provide="markdown"></textarea>
+    </div>
+    <div class="col-sm-3">
+      <h2>Permissions</h2>
+      {% for u in users %}
+      <label><input type="checkbox" value="{{ u.id }}" name="user_permissions_{{ loop.index }}" /> {{ u.first_name }} {{ u.last_name }}</label><br />
+      {% endfor %}
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <input type="submit" class="btn btn-primary" value="submit" />
+    </div>
+  </div>
+</form>
+
+{% endblock %}
+
+{% block script %}
+{% include "_markdown.html" %}
+{% endblock %}

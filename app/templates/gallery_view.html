@@ -1,0 +1,54 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-xs-12">
+    <div id="dropzone_for_images" class="text-center">
+      <h4>Upload Images</h4>
+      <p>Drag and drop images here or click here to select them.</p>
+    </div>
+  </div>
+</div>
+<div class="row" id="added_images_holder">
+  {% for i in g.images %}
+  <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+    <a class="close delete_image" aria-label="Delete" data-url="/image/{{ i.id }}"><span aria-hidden="true">&times;</span></a>
+    <div class="added_image_wrapper">
+      <div class="gallery_select_img_wrapper">
+	<img class="img-responsive height center-block" src="{{ i.url }}" />
+      </div>
+      <label>Link</label>
+      <div class="input-group">
+	<input type="text" class="form-control link" name="img_link" value="{% if i.link != None %}{{ i.link }}{% endif %}">
+	<span class="input-group-btn">
+          <button class="btn btn-default link_trigger" type="button">
+	    <i class="fa fa-search"></i>
+	  </button>
+	</span>
+      </div><!-- /input-group -->
+      <label>Title</label>
+      <input class="form-control" name="img_title" value="{{ i.title }}" />
+      <a class="btn btn-default" 
+	 type="button" 
+	 data-toggle="collapse" 
+	 data-target="#{{ i.id }}_additional_options" 
+	 aria-expanded="false">Additional Options</a>
+      <div id="{{ i.id }}_additional_options" class="collapse">
+	<textarea class="form-control" 
+		  name="alt_text" 
+		  data-provide="markdown"
+		  placeholder="Text to accompany this image"
+		  rows="7">{{ i.alt_text }}</textarea>
+      </div>
+      <button class="btn btn-block update_title" data-img_id="{{ i.id }}">Update Image</button>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block script %}
+{% include "_add_link_modal.html" %}
+<script type="text/javascript" src="/static/js/gallery.js"></script>
+<script type="text/javascript" src="/static/js/dropzone.js"></script>
+{% endblock %}

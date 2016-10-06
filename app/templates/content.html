@@ -1,0 +1,14 @@
+{% extends "wrap.html" %}
+
+{% block page_stuff %}
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ c.title }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    {{ content | markdown }}
+  </div>
+</div>
+{% endblock %}

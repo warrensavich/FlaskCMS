@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% from "_macros.html" import carousel %}
+
+{% block carousel %}
+{% if s.slug | can_edit %}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <h3>Page Controls</h3>
+      {% if s.slug | can_edit %}
+      <a class="btn btn-warning"
+	 href="/edit/{{ s.slug }}/{{ c.slug }}">
+	<i class="fa fa-pencil"></i> Edit</a>
+      {% endif %}
+      {% if ((s.slug | can_publish) and (c.preview == True)) %}
+      <a class="btn btn-success" href="/publish/{{ s.slug }}/{{ c.slug }}">
+	<span class="fa fa-check"></span> Publish</a>
+      {% endif %}
+      {% if ((s.slug | can_publish) and (c.preview == False)) %}
+      <a class="btn btn-danger" href="/unpublish/{{ s.slug }}/{{ c.slug }}">
+	<span class="fa fa-trash"></span> Un-Publish</a>
+      {% endif %}
+      {% if current_user | has_admin %}
+      <a class="btn btn-default" href="/delete/{{ s.slug }}/{{ c.slug }}">
+	<span class="fa fa-trash"></span> Delete</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% for x in c.dynamic_page.components %}
+{% include x.component_type + ".html" %}
+{% endfor %}
+{% endblock %}
+
+{% block class_content %}
+ hidden
+{% endblock %}

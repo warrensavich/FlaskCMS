@@ -1,0 +1,31 @@
+{% extends "wrap.html" %}
+
+{% block page_stuff %}
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ c.title }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <p>{{ c.excerpt }}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li class="list-group-item">
+	<h3>Blogs in this group</h3>
+      </li>
+      {% for page in s.pages if page.slug != "_main" %}
+      <li class="list-group-item">
+	<a href="/{{ s.slug }}/{{ page.slug }}">
+	  <h4>{{ page.title }}</h4>
+	  <p>{{ page.excerpt }}</p>
+	</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

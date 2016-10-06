@@ -1,0 +1,29 @@
+{% extends "wrap.html" %}
+
+{% block page_stuff %}
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ c.title }}</h1>
+  </div>
+</div>
+{% for par in c.paragraphs %}
+<div class="row extra-space">
+  <div class="col-xs-12">
+    <h3>{{ par.title }} <small>{{ par.time | date }}</small></h3>
+    <div class="row">
+      <div class="col-xs-12">
+	{% for t in par.tags %}
+	<div class="float-left tag_wrapper">
+	  <a href="/posts_by_tag/{{ t.slug }}">{{ t.title }}</a>
+	</div>
+	{% endfor %}
+      </div>
+    </div>
+    <p>{{ par.content | markdown }}</p>
+    <a class="comment_toggle" href="/{{ s.slug }}/{{ c.slug }}/{{ par.id }}"><i class="fa fa-commenting"></i> View Comments ({{ par.comments | length }})</a>
+    <div class="comment_holder">
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

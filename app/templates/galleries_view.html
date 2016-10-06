@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="row">
+  {% for g in galleries %}
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <a href="/gallery/{{ g.slug }}">
+      <div class="gallery_select_block existing_gallery">
+	<div class="gallery_select_img_wrapper">
+	  <img class="img-responsive img-rounded center-block height" 
+	       src="{% if (g.images | length) > 0 %}{{ g.images[0].url }}{% else %}/static/img/No_image_available.svg{% endif %}" />
+	</div>
+	<h4 class="text-center">{{ g.title }}</h4>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

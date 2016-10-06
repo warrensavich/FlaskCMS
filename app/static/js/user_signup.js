@@ -1,14 +1,14 @@
 $(document).ready(function() {
-    $("#sign_up").click(function() {
-	var data = $("#new_user_form").serializeArray();
-	data.roles = ["user", "seeker"];
+    $("#register_user_form").submit(function(event) {
+	event.preventDefault();
 	$.ajax({
 	    type: 'POST',
-	    url: '/register',
-	    data: JSON.stringify(data),
+	    url: '/api/new_user',
+	    data: JSON.stringify(form2js("register_user_form")),
 	    contentType: "application/json",
 	    success: function() {
-		alert("Success");
+		alert("Success!");
+		window.location.href = "/";
 	    },
 	    error: function() {
 		alert("Error");

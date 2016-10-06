@@ -1,0 +1,9 @@
+$(function() {
+    $("#new-gallery-form").submit(function(e) {
+	e.preventDefault();
+	$.ajax({
+	    type: 'POST',
+	    url: "/new_gallery",
+	    data: $("#new-gallery-form").serialize(),
+	    
+});

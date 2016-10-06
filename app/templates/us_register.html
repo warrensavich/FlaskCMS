@@ -1,0 +1,80 @@
+{% extends "wrap.html" %}
+
+{% from "_macros.html" import input %}
+
+{% macro checkbox(label) %}
+<div class="row">
+  <div class="col-xs-12">
+    <label><input type="checkbox" 
+		  name="experiences[]" 
+		  value="{{ label }}" /> {{ label }}</label>
+  </div>
+</div>
+{% endmacro %}
+
+{% block page_stuff %}
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ c.title }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    {{ content | markdown }}
+  </div>
+</div>
+<form id="register_user_form">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+	<div class="col-md-6">
+	  {{ input("first_name", "First Name") }}
+	  {{ input("last_name", "Last Name") }}
+	  {{ input("email", "Email") }}
+	  {{ input("confirm_email", "Confirm Email") }}
+	  {{ input("company", "Company") }}
+	</div>
+      </div>
+      <h4>I Identify As (check as many as apply):</h4>
+      {{ checkbox("Attempt Survivor") }}
+      {{ checkbox("Loss Survivor") }}
+      {{ checkbox("Suicidal Ideation") }}
+      {{ checkbox("Clinician") }}
+      {{ checkbox("Researcher") }}
+      {{ checkbox("Suicide Prevention Advocate") }}
+      {{ checkbox("Suicide Grief Support") }}
+      {{ checkbox("Peer Support") }}
+      {{ checkbox("Other") }}
+      <br />
+      <div class="row">
+	<div class="col-xs-12">
+	  <label>What I am most interested in about the United Survivors' mission is:</label>
+	  <textarea name="most_interested" rows="7" class="form-control"></textarea>
+	</div>
+      </div>
+      <br />
+      <div class="row">
+	<div class="col-xs-12">
+	  <label>One resource/tool I’d like to see for Suicide Prevention Advocates with Lived Experience is:</label>
+	  <textarea name="preferred_resource" rows="7" class="form-control"></textarea>
+	</div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="pull-right">
+	<button type="submit" 
+		class="btn btn-primary btn-lg" 
+		id="sign_up">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript" src="/static/js/user_signup.js"></script>
+{% endblock %}

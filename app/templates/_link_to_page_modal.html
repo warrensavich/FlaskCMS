@@ -1,0 +1,41 @@
+<div class="modal fade" id="link_page" tabindex="-1" role="dialog" aria-labelledby="linkPage">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="link_page_title">Link to a Page</h4>
+      </div>
+      <div class="modal-body">
+	<div class="row">
+	  <div class="col-xs-12" id="add_link_selector_wrapper">
+	    <p id="add_link_selected_path"></p>
+	    <input class="form-control input-lg hidden" id="add_link_holder" />
+	    {% for sec in sections %}
+	    <a data-value="/{{ sec.slug }}" 
+	       data-path="{{ sec.title }}"> {{ sec.title }}</a>
+	    <br />
+	    <div class="indented">
+	      {% for pag in sec.pages if pag.slug != "_main" %}
+	      <a data-value="/{{ sec.slug }}/{{ pag.slug }}" 
+		 data-path="{{ sec.title }} > {{ pag.title }}"> {{ pag.title }}</a>
+	      <br />
+	      <div class="indented">
+		{% for par in pag.paragraphs %}
+		<a data-value="/{{ sec.slug }}/{{ pag.slug }}/{{ par.id }}"
+		   data-path="{{ sec.title }} > {{ pag.title }} > {{ par.title }}"> {{ par.title }}</a>
+		<br />
+		{% endfor %}
+	      </div>
+	      {% endfor %}
+	    </div>
+	    {% endfor %}
+	  </div>
+	</div>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-warning" data-dismiss="modal" aria-label="Close">Cancel</button>
+	<button type="button" class="btn btn-primary" id="choose_add_link">Select Page For Link</button>
+      </div>
+    </div>
+  </div>
+</div>

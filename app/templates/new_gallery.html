@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-xs-12">
+    <form method="POST" enctype="multipart/form-data">
+      <label>Gallery Title</label>
+      <input type="text" name="gallery_title" class="form-control" />
+      <br />
+      <label>Image Title</label>
+      <input type="text" name="file_title" class="form-control" />
+      <br />
+      <label>File</label>
+      <input type="file" name="file" class="form-control" />
+      <br />
+      <input type="submit" class="btn btn-primary" value="Upload">
+    </form>
+  </div>
+</div>
+{% endblock %}

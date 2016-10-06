@@ -1,0 +1,17 @@
+{% from "_macros.html" import headed_column %}
+<div class="container-fluid banner full_banner">
+  <div class="row banner_row">
+    <div class="col-xs-12">
+      <div class="container">
+	<a href="{{ x.href }}">
+	   <div class="row">
+	     {{ headed_column(x.title, x.text) }}
+	     {{ headed_column(x.second_title, x.second_text) }}
+	     {{ headed_column(x.third_title, x.third_text) }}
+	     {{ headed_column(x.fourth_title, x.fourth_text) }}
+	   </div>
+	</a>
+      </div>
+    </div>
+  </div>
+</div>

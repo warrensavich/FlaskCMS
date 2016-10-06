@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+
+{% block bootstrap %}
+{% if (s.css | defined) %}{{ s.css }}{% else %}{{ super() }}{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-xs-12">
+    <form id="add-blog-post" method="POST" action="/add_paragraph/{{ s.slug }}/{{ p.slug }}" enctype="multipart/form-data">
+      <label>Title</label>
+      <input class="input-lg form-control" name="title" type="text" />
+      <br />
+      <label>Abstract</label>
+      <input class="input-lg form-control" name="abstract" type="text" />
+      <br />
+      <label>Article Source File</label>
+      <p>Use standard headers in Word and the CMS takes care of the formatting</p>
+      <input type="file" name="source_document" class="form-control input-lg" />
+      <br />
+      <label>OR</label>
+      <br />
+      <label>Article Content</label>
+      <textarea class="form-control" rows="5" name="content" data-provide="markdown"></textarea>
+      <br />
+      {% include "_tag_selector.html" %}
+      <br />
+      {% include "_gallery_selector.html" %}
+      <div class="text-right">
+	<input class="btn btn-primary" type="submit" value="Add Post" />
+      </div>
+  </div>
+</div>
+{% include "_new_gallery_modal.html" %}
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/static/js/dropzone.js"></script>
+{% endblock %}

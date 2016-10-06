@@ -1,0 +1,36 @@
+{% from "_macros.html" import carousel %}
+<div class="container-fluid banner">
+  <div class="row banner_row">
+    <div class="col-sm-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+	      {{ carousel("dynamic_carousel_" + (x.id | string), x.gallery.images) }}
+          </div>
+          <div class="col-sm-6">
+	    {% if x.linked_section %}
+	    {{ x.linked_section }}
+	    {% endif %}
+	    {% if x.linked_page %}
+	    {{ x.linked_page }}
+	    {% endif %}
+	    {% if x.linked_paragraph %}
+	    <a href="/{{ x.linked_paragraph.pages[0].section_obj.slug }}/{{ x.linked_paragraph.pages[0].slug }}/{{ x.linked_paragraph.id }}">
+	      <h2>{{ x.linked_paragraph.title }}</h2>
+	      <p>{{ x.linked_paragraph.abstract }}</p>
+	    </a>
+	    {% endif %}
+	    {% if x.href != None %}
+	    <a href="{{ x.href }}">
+	      {% endif %}
+	      <p>{{ x.text | markdown }}</p>
+	      
+	      {% if x.href != None %}
+	    </a>
+	    {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+{% extends "_base.html" %}
+
+{% block bootstrap %}
+{% if (s.css | defined) %}{{ s.css }}{% else %}{{ super() }}{% endif %}
+{% endblock %}
+
+{% block head %}
+<style>
+html { 
+  background: url({{ c.gallery.images[0].url }}) no-repeat fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body {
+  background-color: transparent;
+}
+#footer_wrapper {
+  background-color: rgba(0,0,0,0.8)
+}
+</style>
+{% endblock %}
+
+{% block class_content %}semi-transparent{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-8">
+    <img class="img-responsive" src="{{ a.gallery.images[0].url }}" />
+    <h1>{{ a.title }}</h1>
+    {{ a.content | markdown }}
+  </div>
+  <div class="col-sm-4">
+    <h3>{{ c.title }}</h3>
+    <p class="text-muted">More from this issue</p>
+    {% for x in c.paragraphs if x.id != a.id %}
+    <a href="/{{ s.slug }}/{{ c.slug }}/{{ x.id }}">
+      <h3>{{ x.title }}</h3>
+      <p>{{ x.abstract }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

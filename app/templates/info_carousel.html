@@ -1,0 +1,2 @@
+{% from "_macros.html" import carousel %}
+{{ carousel("dynamic_caoursel_" + (x.id | string), x.gallery.images, True, True, True) }}

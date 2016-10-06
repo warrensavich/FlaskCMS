@@ -1,0 +1,31 @@
+{% extends "wrap.html" %}
+
+{% block page_stuff %}
+
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ c.title }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <p>{{ c.excerpt }}</p>
+  </div>
+</div>
+<div class="row">
+  {% for p in c.participants %}
+  <a href="/{{ s.slug }}/{{ c.slug }}/{{ p.id }}">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="gallery_select_img_wrapper">
+	<img class="img-responsive height center-block" src="{% if (p.gallery.images | length) > 0 %}{{ p.gallery.images[0].url }}{% else %}/static/img/No_image_available.svg{% endif %}" />
+      </div>
+      <h3>{{ p.name }}</h3>
+      <div class="progress">
+	<div class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ (p.current_progress / p.goal) * 100.0 }}%;min-width:30px;">
+	{{ ((p.current_progress / p.goal) * 100.0) | truncate_number }}%
+      </div>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+{% endblock %}

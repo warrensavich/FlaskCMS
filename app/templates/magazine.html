@@ -1,0 +1,20 @@
+{% extends "wrap.html" %}
+
+{% block page_stuff %}
+<div class="row extra-space">
+  <div class="col-xs-12">
+    <h1>Available Issues of {{ c.title }}</h1>
+    <div class="row">
+      {% for x in s.pages if x.slug != "_main" %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+	<a href="/{{ s.slug }}/{{ x.slug }}" class="magazine_cover">
+	  <img class="img-responsive height center-block"
+	       src="{{ x.gallery.images[0].url }}" />
+	  <h3>{{ x.title }}</h3>
+	</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

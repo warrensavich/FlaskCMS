@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<form id="add-section-form" method="POST">
+  <div class="row">
+    <div class="col-xs-12">
+      <label>Title</label>
+      <input class="input-lg form-control" name="title" value="{{ c.title }}" />
+      <br />
+      <label>Excerpt</label>
+      <textarea class="form-control" rows="5" name="excerpt">{{ c.excerpt }}</textarea>
+      <br />
+      <label>Page Content</label>
+      <textarea class="form-control" rows="5" name="content" data-provide="markdown">{{ c.content }}</textarea>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <a href="/{{ s.slug }}/{{ c.slug }}" class="btn btn-default">Cancel</a>
+      <input type="submit" class="btn btn-primary" value="Submit" />
+    </div>
+  </div>
+</form>
+
+{% endblock %}
+
+{% block script %}
+{% include "_markdown.html" %}
+{% endblock %}

@@ -1,0 +1,38 @@
+<div class="modal fade" id="add_link_modal" tabindex="-1" role="dialog" aria-labelledby="addlink">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="add_link_title">Link to a Page</h4>
+      </div>
+      <div class="modal-body">
+	<div class="row">
+	  <div class="col-xs-12" id="link_selector_wrapper">
+	    <label>Paste Link Below or Click The Internal Map to Get Link</label>
+	    <input class="form-control input-lg" id="link_holder" />
+	    {% for sec in sections %}
+	    <a data-value="/{{ sec.slug }}"> {{ sec.title }}</a>
+	    <br />
+	    <div class="indented">
+	      {% for pag in sec.pages if pag.slug != "_main" %}
+	      <a data-value="/{{ sec.slug }}/{{ pag.slug }}"> {{ pag.title }}</a>
+	      <br />
+	      <div class="indented">
+		{% for par in pag.paragraphs %}
+		<a data-value="/{{ sec.slug }}/{{ pag.slug }}/{{ par.id }}"> {{ par.title }}</a>
+		<br />
+		{% endfor %}
+	      </div>
+	      {% endfor %}
+	    </div>
+	    {% endfor %}
+	  </div>
+	</div>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-warning" data-dismiss="modal" aria-label="Close">Cancel</button>
+	<button type="button" class="btn btn-primary" id="choose_link">Select Page For Link</button>
+      </div>
+    </div>
+  </div>
+</div>

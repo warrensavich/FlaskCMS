@@ -1,0 +1,13 @@
+<select class="form-control" name="layout">
+  {% if s.section_type == "blog" %}
+  <option value="blog" selected="selected">Blog</option>
+  {% elif s.section_type == "fundraiser" %}
+  <option value="fundraiser" selected="selected">Fundraiser</option>
+  {% elif s.section_type == "magazine" %}
+  <option value="issue_grid">Issue Grid</option>
+  <option value="issue" selected="selected">Issue</option>
+  {% else %}
+  <option value="content">Standard Content</option>
+  <option value="personell_list">Personell List</option>
+  {% endif %}
+</select>
